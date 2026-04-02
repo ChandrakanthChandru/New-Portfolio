@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Projects — Chandrakanth K</title>
+  <meta name="description" content="Projects by Chandrakanth K — Portfolio Website, Quiz App, and Sales Dashboard." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+
+  <style>
+    /* Filter tabs */
+    .filter-tabs {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      margin-bottom: 3rem;
+    }
+    .filter-tab {
+      padding: 8px 20px; border-radius: 100px;
+      font-size: 0.85rem; font-weight: 600;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .filter-tab.active,
+    .filter-tab:hover {
+      background: var(--accent-glow);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Project card accent colours per category */
+    .project-card[data-cat="web"] .project-num { color: #00d4ff; }
+    .project-card[data-cat="react"] .project-num { color: #61dafb; }
+    .project-card[data-cat="excel"] .project-num { color: #21a366; }
+
+    .project-card[data-cat="react"] .project-card-top { border-top: 3px solid rgba(97,218,251,0.4); }
+    .project-card[data-cat="excel"] .project-card-top { border-top: 3px solid rgba(33,163,102,0.4); }
+
+    /* Hidden for filter */
+    .project-card.hidden { display: none; }
+
+    /* Feature badge */
+    .proj-badge {
+      display: inline-block; padding: 3px 10px;
+      border-radius: 100px; font-size: 0.72rem; font-weight: 700;
+      background: var(--accent-glow); color: var(--accent);
+      border: 1px solid rgba(0,212,255,0.25);
+      margin-bottom: 0.6rem;
+    }
+
+    /* Stats strip below hero */
+    .proj-highlights {
+      display: flex; flex-wrap: wrap; gap: 1.5rem;
+      padding: 2rem 5%;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      justify-content: center;
+    }
+    .proj-highlight {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.88rem; color: var(--text-secondary);
+    }
+    .proj-highlight i { color: var(--accent); font-size: 1rem; }
+  </style>
+</head>
+<body>
+
+<!-- ── Loader ── -->
+<div id="loader">
+  <div class="loader-logo"><i class="fas fa-laptop-code"></i></div>
+  <div class="loader-bar"></div>
+</div>
+
+<!-- ── Navbar ── -->
+<nav id="navbar">
+  <a href="../index.html" class="nav-logo"><i class="fas fa-laptop-code" style="margin-right:8px;"></i><span>CK</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="projects.html" class="active">Projects</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <i class="fas fa-sun"></i>
+    </button>
+    <button class="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── Page Hero ── -->
+<div style="padding: calc(var(--nav-height) + 60px) 5% 60px; background: var(--bg-secondary); border-bottom: 1px solid var(--border);">
+  <span class="section-tag" data-aos>My Work</span>
+  <h1 class="section-title" data-aos data-aos-delay="80">Projects &amp; Builds</h1>
+  <p class="section-subtitle" data-aos data-aos-delay="160" style="margin-bottom:0">
+    Each project reflects a learning journey — from design concepts to deployed applications.
+  </p>
+</div>
+
+<!-- ── Highlights strip ── -->
+<div class="proj-highlights">
+  <div class="proj-highlight"><i class="fas fa-globe"></i> Deployed on Vercel</div>
+  <div class="proj-highlight"><i class="fab fa-react"></i> React Applications</div>
+  <div class="proj-highlight"><i class="fas fa-file-excel"></i> Data Dashboards</div>
+  <div class="proj-highlight"><i class="fab fa-github"></i> Open Source</div>
+</div>
+
+<!-- ── Projects Grid ── -->
+<section id="projects" style="padding-top: 80px;">
+  <div data-aos>
+    <!-- Filter -->
+    <div class="filter-tabs">
+      <button class="filter-tab active" data-filter="all">All Projects</button>
+      <button class="filter-tab" data-filter="web">Web</button>
+      <button class="filter-tab" data-filter="react">React</button>
+      <button class="filter-tab" data-filter="excel">Excel / Data</button>
+    </div>
+  </div>
+
+  <div class="projects-grid" id="projectsGrid">
+
+    <!-- Project 1 -->
+    <div class="project-card" data-cat="web" data-aos data-aos-delay="0">
+      <div class="project-card-top">
+        <div class="project-num">01 / WEB</div>
+        <span class="proj-badge"><i class="fas fa-rocket" style="margin-right:4px"></i>Live on Vercel</span>
+        <h3>Portfolio Website</h3>
+        <p>
+          A personal portfolio website designed and developed from scratch to showcase skills, projects, and professional experience.
+          Features a fully responsive layout optimised for all screen sizes and deployed on Vercel for fast global delivery.
+        </p>
+        <ul style="margin: .8rem 0 1rem; padding-left: 1.2rem; color: var(--text-secondary); font-size:.88rem; line-height:1.8">
+          <li>Responsive mobile-first design</li>
+          <li>Modern, clean UI with smooth animations</li>
+          <li>Project sections with detailed descriptions</li>
+          <li>Deployed and publicly accessible</li>
+        </ul>
+        <div class="project-tech">
+          <span>HTML5</span><span>CSS3</span><span>JavaScript</span>
+        </div>
+      </div>
+      <div class="project-card-bottom">
+        <a href="https://github.com/ChandrakanthChandru" target="_blank" rel="noopener" class="project-link">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+        <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project-card" data-cat="react" data-aos data-aos-delay="100">
+      <div class="project-card-top">
+        <div class="project-num">02 / REACT</div>
+        <span class="proj-badge" style="background:rgba(97,218,251,0.1);color:#61dafb;border-color:rgba(97,218,251,0.3)">
+          <i class="fab fa-react" style="margin-right:4px"></i>React App
+        </span>
+        <h3>Quiz Website</h3>
+        <p>
+          An interactive quiz application featuring dynamic question rendering, auto-scoring, and real-time state management.
+          Built with React functional components and hooks for a smooth, responsive experience.
+        </p>
+        <ul style="margin: .8rem 0 1rem; padding-left: 1.2rem; color: var(--text-secondary); font-size:.88rem; line-height:1.8">
+          <li>Dynamic question &amp; answer rendering</li>
+          <li>Automatic score calculation</li>
+          <li>React Hooks for state &amp; navigation</li>
+          <li>Responsive design for mobile &amp; desktop</li>
+        </ul>
+        <div class="project-tech">
+          <span>ReactJS</span><span>JavaScript</span><span>CSS3</span>
+        </div>
+      </div>
+      <div class="project-card-bottom">
+        <a href="https://github.com/ChandrakanthChandru" target="_blank" rel="noopener" class="project-link">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+        <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="project-card" data-cat="excel" data-aos data-aos-delay="200">
+      <div class="project-card-top">
+        <div class="project-num">03 / DATA</div>
+        <span class="proj-badge" style="background:rgba(33,163,102,0.1);color:#21a366;border-color:rgba(33,163,102,0.3)">
+          <i class="fas fa-file-excel" style="margin-right:4px"></i>Excel Dashboard
+        </span>
+        <h3>Sales Report Dashboard</h3>
+        <p>
+          A comprehensive Excel dashboard built to track sales KPIs and visualise performance trends.
+          Leverages advanced formulas and pivot charts to transform raw data into actionable insights.
+        </p>
+        <ul style="margin: .8rem 0 1rem; padding-left: 1.2rem; color: var(--text-secondary); font-size:.88rem; line-height:1.8">
+          <li>SUM, IF, VLOOKUP formula-driven analytics</li>
+          <li>Interactive Pivot Tables for data slicing</li>
+          <li>Bar &amp; line charts for trend visualisation</li>
+          <li>Easy-to-update structure for daily use</li>
+        </ul>
+        <div class="project-tech">
+          <span>Excel</span><span>Pivot Tables</span><span>VLOOKUP</span><span>Charts</span>
+        </div>
+      </div>
+      <div class="project-card-bottom">
+        <a href="https://github.com/ChandrakanthChandru" target="_blank" rel="noopener" class="project-link">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+      </div>
+    </div>
+
+    <!-- Project 4: DMR -->
+    <div class="project-card" data-cat="web" data-aos data-aos-delay="300">
+      <div class="project-card-top">
+        <div class="project-num">04 / WEB</div>
+        <span class="proj-badge"><i class="fas fa-rocket" style="margin-right:4px"></i>Live on Vercel</span>
+        <h3>DMR Constructions</h3>
+        <p>
+          A professional website for a construction and infrastructure company, built with responsive modern UI and dynamic content management.
+          Features an integrated contact form connecting seamlessly to a Supabase database.
+        </p>
+        <ul style="margin: .8rem 0 1rem; padding-left: 1.2rem; color: var(--text-secondary); font-size:.88rem; line-height:1.8">
+          <li>Construction business portfolio &amp; galleries</li>
+          <li>Real-time contact data collection</li>
+          <li>Supabase database backend integration</li>
+          <li>Fully responsive and hosted on Vercel</li>
+        </ul>
+        <div class="project-tech">
+          <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Supabase</span>
+        </div>
+      </div>
+      <div class="project-card-bottom">
+        <a href="https://github.com/ChandrakanthChandru" target="_blank" rel="noopener" class="project-link">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+        <a href="https://dmr-constructions.vercel.app/" target="_blank" rel="noopener" class="project-link">
+          <i class="fas fa-external-link-alt"></i> Live Demo
+        </a>
+      </div>
+    </div>
+
+    <!-- Project 5: VV Construction -->
+    <div class="project-card" data-cat="web" data-aos data-aos-delay="400">
+      <div class="project-card-top">
+        <div class="project-num">05 / WEB</div>
+        <span class="proj-badge"><i class="fas fa-rocket" style="margin-right:4px"></i>Live on Vercel</span>
+        <h3>VV Construction</h3>
+        <p>
+          A robust client-facing portal for civil contracting and building projects. Designed to boost user inquiries with an intuitive layout and backend lead capture.
+        </p>
+        <ul style="margin: .8rem 0 1rem; padding-left: 1.2rem; color: var(--text-secondary); font-size:.88rem; line-height:1.8">
+          <li>Modern civil engineering web design</li>
+          <li>Interactive project and services sections</li>
+          <li>Supabase backend for secure inquiries</li>
+          <li>Live Vercel deployment with fast loading</li>
+        </ul>
+        <div class="project-tech">
+          <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Supabase</span>
+        </div>
+      </div>
+      <div class="project-card-bottom">
+        <a href="https://github.com/ChandrakanthChandru" target="_blank" rel="noopener" class="project-link">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+        <a href="https://vv-construction.vercel.app/" target="_blank" rel="noopener" class="project-link">
+          <i class="fas fa-external-link-alt"></i> Live Demo
+        </a>
+      </div>
+    </div>
+
+  </div><!-- /projects-grid -->
+
+  <!-- More CTA -->
+  <div style="text-align:center;margin-top:4rem" data-aos>
+    <p style="color:var(--text-secondary);font-size:.95rem;margin-bottom:1.2rem">
+      More projects coming soon — follow along on GitHub!
+    </p>
+    <a href="https://github.com/ChandrakanthChandru" target="_blank" rel="noopener" class="btn btn-primary">
+      <i class="fab fa-github"></i> View GitHub Profile
+    </a>
+  </div>
+
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="footer-logo">CK</div>
+  <nav class="footer-links">
+    <a href="../index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <p>Designed &amp; Built by <span class="text-accent">Chandrakanth K</span> &copy; 2025</p>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+  // Filter tabs
+  const filterBtns = document.querySelectorAll('.filter-tab');
+  const cards = document.querySelectorAll('.project-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      cards.forEach(card => {
+        if (filter === 'all' || card.dataset.cat === filter) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>

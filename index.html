@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Chandrakanth K — Web Designer & Developer</title>
+  <meta name="description" content="Portfolio of Chandrakanth K — Web Designer, Web Developer & Java Developer based in Chennai, Tamil Nadu." />
+  <meta name="keywords" content="Chandrakanth K, Web Developer, Web Designer, Java Developer, Portfolio, Chennai" />
+  <meta property="og:title" content="Chandrakanth K | Portfolio" />
+  <meta property="og:description" content="Web Designer • Web Developer • Java Developer" />
+  <meta property="og:type" content="website" />
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    /* Home-only extras */
+    .stats-bar {
+      display: flex; flex-wrap: wrap; gap: 2rem;
+      padding: 3rem 5%;
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      justify-content: center;
+    }
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 2.5rem; font-weight: 800;
+      color: var(--accent); line-height: 1;
+    }
+    .stat-label { font-size: 0.82rem; color: var(--text-muted); margin-top: 4px; }
+
+    .featured-projects { padding: 100px 5%; background: var(--bg-secondary); }
+
+    .view-all {
+      display: flex; justify-content: center; margin-top: 3rem;
+    }
+
+    /* Floating tech icons */
+    .hero-floats {
+      position: absolute; right: 5%; top: 50%;
+      transform: translateY(-50%);
+      display: flex; flex-direction: column; gap: 1rem;
+      z-index: 1;
+    }
+    .float-icon {
+      width: 58px; height: 58px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; color: var(--accent);
+      animation: floatY 3s ease-in-out infinite;
+      box-shadow: var(--shadow);
+    }
+    .float-icon:nth-child(2) { animation-delay: 0.5s; }
+    .float-icon:nth-child(3) { animation-delay: 1s; }
+    .float-icon:nth-child(4) { animation-delay: 1.5s; }
+    .float-icon:nth-child(5) { animation-delay: 2s; }
+    @keyframes floatY {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    @media (max-width: 900px) { .hero-floats { display: none; } }
+  </style>
+</head>
+<body>
+
+<!-- ── Loader ── -->
+<div id="loader">
+  <div class="loader-logo"><i class="fas fa-laptop-code"></i></div>
+  <div class="loader-bar"></div>
+</div>
+
+<!-- ── Navbar ── -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo"><i class="fas fa-laptop-code" style="margin-right:8px;"></i><span>CK</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="pages/about.html">About</a></li>
+    <li><a href="pages/projects.html">Projects</a></li>
+    <li><a href="pages/contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <i class="fas fa-sun"></i>
+    </button>
+    <button class="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      Available for opportunities
+    </div>
+
+    <h1 class="hero-name">
+      Hi, I'm<br>
+      <span class="highlight">Chandrakanth</span>
+    </h1>
+
+    <div class="hero-roles">
+      <a href="https://developer.mozilla.org/en-US/docs/Learn/Front-end_web_developer" target="_blank" class="role-pill"><i class="fas fa-paint-brush" style="margin-right:5px;font-size:.75rem;color:var(--accent)"></i> Web Designer</a>
+      <a href="https://developer.mozilla.org/en-US/docs/Web" target="_blank" class="role-pill"><i class="fas fa-code" style="margin-right:5px;font-size:.75rem;color:var(--accent)"></i> Web Developer</a>
+      <a href="https://dev.java/" target="_blank" class="role-pill"><i class="fab fa-java" style="margin-right:5px;font-size:.75rem;color:var(--accent)"></i> Java Developer</a>
+    </div>
+
+    <p class="hero-desc">
+      B.Sc. CS Graduate from Chennai, crafting modern web experiences and robust Java applications. Turning ideas into clean, performant digital products.
+    </p>
+
+    <div class="hero-cta">
+      <a href="pages/projects.html" class="btn btn-primary">
+        <i class="fas fa-folder-open"></i> View Projects
+      </a>
+      <a href="pages/contact.html" class="btn btn-outline">
+        <i class="fas fa-envelope"></i> Contact Me
+      </a>
+    </div>
+  </div>
+
+  <!-- Floating tech icons -->
+  <div class="hero-floats">
+    <div class="float-icon"><i class="fab fa-html5"></i></div>
+    <div class="float-icon"><i class="fab fa-css3-alt"></i></div>
+    <div class="float-icon"><i class="fab fa-js"></i></div>
+    <div class="float-icon"><i class="fab fa-react"></i></div>
+    <div class="float-icon"><i class="fab fa-java"></i></div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    SCROLL
+  </div>
+</section>
+
+<!-- ── Stats Bar ── -->
+<div class="stats-bar">
+  <div class="stat-item" data-aos>
+    <div class="stat-num"><span data-target="5" data-suffix="+">0</span></div>
+    <div class="stat-label">Projects Built</div>
+  </div>
+  <div class="stat-item" data-aos data-aos-delay="100">
+    <div class="stat-num"><span data-target="5" data-suffix="+">0</span></div>
+    <div class="stat-label">Technologies</div>
+  </div>
+  <div class="stat-item" data-aos data-aos-delay="200">
+    <div class="stat-num"><span data-target="1" data-suffix="">0</span></div>
+    <div class="stat-label">Certification</div>
+  </div>
+  <div class="stat-item" data-aos data-aos-delay="300">
+    <div class="stat-num"><span data-target="71" data-suffix="%">0</span></div>
+    <div class="stat-label">B.Sc. CS Score</div>
+  </div>
+</div>
+
+<!-- ── Skills Highlight ── -->
+<section id="skills">
+  <div data-aos>
+    <span class="section-tag">What I Do</span>
+    <h2 class="section-title">Skills &amp; Expertise</h2>
+    <p class="section-subtitle">A versatile skill set spanning front-end design, full-stack development, and data analysis.</p>
+  </div>
+
+  <div class="skills-grid">
+
+    <div class="skill-card" data-aos data-aos-delay="0">
+      <div class="skill-card-icon"><i class="fas fa-code"></i></div>
+      <h3>Languages</h3>
+      <div class="skill-tags">
+        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" class="skill-tag">HTML</a>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" class="skill-tag">CSS</a>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" class="skill-tag">JavaScript</a>
+        <a href="https://dev.java/" target="_blank" class="skill-tag">Core Java</a>
+      </div>
+    </div>
+
+    <div class="skill-card" data-aos data-aos-delay="80">
+      <div class="skill-card-icon"><i class="fas fa-layer-group"></i></div>
+      <h3>Frameworks</h3>
+      <div class="skill-tags">
+        <a href="https://react.dev/" target="_blank" class="skill-tag">ReactJS</a>
+        <a href="https://spring.io/" target="_blank" class="skill-tag">Spring</a>
+        <a href="https://hibernate.org/" target="_blank" class="skill-tag">Hibernate</a>
+        <a href="https://docs.oracle.com/javase/tutorial/jdbc/" target="_blank" class="skill-tag">JDBC</a>
+      </div>
+    </div>
+
+    <div class="skill-card" data-aos data-aos-delay="160">
+      <div class="skill-card-icon"><i class="fas fa-database"></i></div>
+      <h3>Databases</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Oracle SQL</span>
+        <span class="skill-tag">MySQL</span>
+      </div>
+    </div>
+
+    <div class="skill-card" data-aos data-aos-delay="240">
+      <div class="skill-card-icon"><i class="fas fa-tools"></i></div>
+      <h3>Tools &amp; IDEs</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">GitHub</span>
+        <span class="skill-tag">VS Code</span>
+        <span class="skill-tag">Eclipse IDE</span>
+      </div>
+    </div>
+
+    <div class="skill-card" data-aos data-aos-delay="320">
+      <div class="skill-card-icon"><i class="fas fa-file-excel"></i></div>
+      <h3>Excel &amp; Data</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">VLOOKUP</span>
+        <span class="skill-tag">Pivot Tables</span>
+        <span class="skill-tag">INDEX-MATCH</span>
+        <span class="skill-tag">Dashboards</span>
+      </div>
+    </div>
+
+    <div class="skill-card" data-aos data-aos-delay="400">
+      <div class="skill-card-icon"><i class="fas fa-paint-brush"></i></div>
+      <h3>Design</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Responsive UI</span>
+        <span class="skill-tag">Web Design</span>
+        <span class="skill-tag">Data Visualization</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Featured Projects ── -->
+<section class="featured-projects">
+  <div data-aos>
+    <span class="section-tag">Work</span>
+    <h2 class="section-title">Featured Projects</h2>
+    <p class="section-subtitle">A selection of projects that showcase my development skills and design sensibility.</p>
+  </div>
+
+  <div class="projects-grid">
+
+    <div class="project-card" data-aos data-aos-delay="0">
+      <div class="project-card-top">
+        <div class="project-num">01 / PROJECT</div>
+        <h3>Quiz Website</h3>
+        <p>A React-powered quiz application with dynamic question rendering, automatic scoring, and seamless state management via React Hooks.</p>
+        <div class="project-tech">
+          <span>React</span><span>JavaScript</span><span>CSS</span>
+        </div>
+      </div>
+      <div class="project-card-bottom">
+        <a href="https://github.com/ChandrakanthChandru" target="_blank" rel="noopener" class="project-link">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+        <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+      </div>
+    </div>
+
+    <div class="project-card" data-aos data-aos-delay="100">
+      <div class="project-card-top">
+        <div class="project-num">02 / PROJECT</div>
+        <h3>DMR Constructions</h3>
+        <p>A professional construction and infrastructure company website connected through a Supabase database for efficient management.</p>
+        <div class="project-tech">
+          <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Supabase</span>
+        </div>
+      </div>
+      <div class="project-card-bottom">
+        <a href="https://github.com/ChandrakanthChandru" target="_blank" rel="noopener" class="project-link">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+        <a href="https://dmr-constructions.vercel.app/" target="_blank" rel="noopener" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+      </div>
+    </div>
+
+    <div class="project-card" data-aos data-aos-delay="200">
+      <div class="project-card-top">
+        <div class="project-num">03 / PROJECT</div>
+        <h3>VV Construction</h3>
+        <p>A responsive civil contracting portfolio with seamless client inquiries connected through a Supabase database.</p>
+        <div class="project-tech">
+          <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Supabase</span>
+        </div>
+      </div>
+      <div class="project-card-bottom">
+        <a href="https://github.com/ChandrakanthChandru" target="_blank" rel="noopener" class="project-link">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+        <a href="https://vv-construction.vercel.app/" target="_blank" rel="noopener" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="view-all" data-aos>
+    <a href="pages/projects.html" class="btn btn-outline">
+      <i class="fas fa-arrow-right"></i> All Projects
+    </a>
+  </div>
+</section>
+
+<!-- ── CTA Strip ── -->
+<section style="background:var(--bg-primary);padding:80px 5%;text-align:center">
+  <div data-aos>
+    <span class="section-tag" style="justify-content:center">Let's Connect</span>
+    <h2 class="section-title" style="margin:0 auto .8rem;max-width:560px;text-align:center">
+      Ready to Build Something Great?
+    </h2>
+    <p style="color:var(--text-secondary);max-width:480px;margin:0 auto 2rem">
+      I'm open to freelance, internship, and full-time opportunities. Let's talk!
+    </p>
+    <a href="pages/contact.html" class="btn btn-primary" style="font-size:1rem;padding:1rem 2.5rem">
+      <i class="fas fa-paper-plane"></i> Get In Touch
+    </a>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="footer-logo">CK</div>
+  <nav class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="pages/about.html">About</a>
+    <a href="pages/projects.html">Projects</a>
+    <a href="pages/contact.html">Contact</a>
+  </nav>
+  <p>Designed &amp; Built by <span class="text-accent">Chandrakanth K</span> &copy; 2025</p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
