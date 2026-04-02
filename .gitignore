@@ -1,0 +1,16 @@
+# Supabase
+supabase/.temp/
+supabase/functions/
+supabase/config.toml
+
+# Node / package (if any)
+node_modules/
+
+# Environment files (IMPORTANT)
+.env
+.env.local
+.env.*.local
+
+# npm config
+.npmrc
+*.json

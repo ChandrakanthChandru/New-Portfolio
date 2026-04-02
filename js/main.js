@@ -134,59 +134,7 @@ function typedText(el, texts, speed = 90, pause = 1800) {
 }
 
 /* ── Contact Form Validation ─────────────────────── */
-function initContactForm() {
-  const form = document.getElementById('contactForm');
-  if (!form) return;
-
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    let valid = true;
-
-    const fields = [
-      { id: 'fname', errId: 'fnameErr', msg: 'Please enter your name.' },
-      { id: 'femail', errId: 'femailErr', msg: 'Please enter a valid email.', isEmail: true },
-      { id: 'fmessage', errId: 'fmessageErr', msg: 'Please enter a message.' }
-    ];
-
-    fields.forEach(({ id, errId, msg, isEmail }) => {
-      const input = document.getElementById(id);
-      const err = document.getElementById(errId);
-      if (!input || !err) return;
-      const val = input.value.trim();
-      const invalid = !val || (isEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val));
-      input.classList.toggle('error', invalid);
-      err.classList.toggle('show', invalid);
-      err.textContent = msg;
-      if (invalid) valid = false;
-    });
-
-    if (!valid) return;
-
-    // Simulate success
-    const btn = form.querySelector('button[type="submit"]');
-    btn.disabled = true;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
-
-    setTimeout(() => {
-      btn.innerHTML = '<i class="fas fa-check"></i> Sent!';
-      document.getElementById('formSuccess')?.classList.add('show');
-      form.reset();
-      setTimeout(() => {
-        btn.disabled = false;
-        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
-        document.getElementById('formSuccess')?.classList.remove('show');
-      }, 4000);
-    }, 1600);
-  });
-
-  // Clear errors on input
-  form.querySelectorAll('input, textarea').forEach(el => {
-    el.addEventListener('input', () => {
-      el.classList.remove('error');
-      document.getElementById(el.id + 'Err')?.classList.remove('show');
-    });
-  });
-}
+  // initContactForm(); // Removed to avoid conflict with Supabase form handling in contact.html
 
 /* ── Counter animation ───────────────────────────── */
 function animateCounter(el) {
@@ -217,8 +165,6 @@ function initCounters() {
 /* ── Init all ────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   initAOS();
-  initSkillBars();
-  initContactForm();
   initCounters();
   typedText(
     document.getElementById('typedRole'),

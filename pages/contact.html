@@ -186,7 +186,122 @@
   </nav>
   <p>Designed &amp; Built by <span class="text-accent">Chandrakanth K</span> &copy; 2025</p>
 </footer>
-
+<!-- Supabase must load FIRST before the inline script uses it -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="../js/main.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const supabaseUrl = "https://myspbqjfjxacpktkckyi.supabase.co";
+    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im15c3BicWpmanhhY3BrdGtja3lpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxMDU1OTgsImV4cCI6MjA5MDY4MTU5OH0.XcpEmB_0aAjTPMhbo10tNfV-oj-QrYW-BVPWtYTFElI";
+    const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+    const form = document.getElementById("contactForm");
+    const inputs = form.querySelectorAll("input, textarea");
+
+    // Clear error on user input
+    inputs.forEach(input => {
+      input.addEventListener("input", () => {
+        input.classList.remove("error");
+        const err = document.getElementById(input.id + "Err");
+        if (err) err.classList.remove("show");
+      });
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const nameInput = document.getElementById("fname");
+      const emailInput = document.getElementById("femail");
+      const msgInput = document.getElementById("fmessage");
+      
+      const name = nameInput.value.trim();
+      const email = emailInput.value.trim();
+      const subject = document.getElementById("fsubject").value.trim();
+      const message = msgInput.value.trim();
+
+      const nameErr = document.getElementById("fnameErr");
+      const emailErr = document.getElementById("femailErr");
+      const msgErr = document.getElementById("fmessageErr");
+
+      // Reset errors
+      inputs.forEach(el => el.classList.remove("error"));
+      [nameErr, emailErr, msgErr].forEach(err => err?.classList.remove("show"));
+
+      let valid = true;
+
+      // Validation logic
+      if (!name) {
+        nameInput.classList.add("error");
+        nameErr.classList.add("show");
+        valid = false;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email || !emailRegex.test(email)) {
+        emailInput.classList.add("error");
+        emailErr.classList.add("show");
+        valid = false;
+      }
+
+      if (!message) {
+        msgInput.classList.add("error");
+        msgErr.classList.add("show");
+        valid = false;
+      }
+
+      if (!valid) return;
+
+      // UI feedback during submission
+      const btn = form.querySelector('button[type="submit"]');
+      const originalBtnHtml = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+      try {
+        const { error } = await supabaseClient
+          .from("messages")
+          .insert([{ name, email, subject, message }]);
+
+        if (error) throw error;
+
+
+        // 🔥 CALL EMAIL FUNCTION
+     await fetch("https://myspbqjfjxacpktkckyi.supabase.co/functions/v1/send-email", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im15c3BicWpmanhhY3BrdGtja3lpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxMDU1OTgsImV4cCI6MjA5MDY4MTU5OH0.XcpEmB_0aAjTPMhbo10tNfV-oj-QrYW-BVPWtYTFElI"
+  },
+  body: JSON.stringify({
+    name,
+    email,
+    subject,
+    message
+  })
+});
+
+        // Success
+        const successMsg = document.getElementById("formSuccess");
+        successMsg.style.display = "flex";
+        successMsg.classList.add("show");
+        form.reset();
+        
+        // Reset button immediately
+        btn.disabled = false;
+        btn.innerHTML = originalBtnHtml;
+
+        setTimeout(() => {
+          successMsg.style.display = "none";
+          successMsg.classList.remove("show");
+        }, 5000);
+      } catch (err) {
+        alert("❌ Failed to send message: " + (err.message || "Unknown error"));
+        console.error(err);
+        btn.disabled = false;
+        btn.innerHTML = originalBtnHtml;
+      }
+    });
+  });
+</script>
 </body>
 </html>
