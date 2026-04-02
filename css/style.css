@@ -524,28 +524,56 @@ section { padding: 100px 5%; }
   position: sticky; top: calc(var(--nav-height) + 2rem);
 }
 
-.avatar-placeholder {
+/* ── Profile Photo ── */
+.avatar-photo-wrap {
+  position: relative;
   width: 100%;
-  aspect-ratio: 1;
-  max-width: 320px;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.avatar-photo {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  object-position: top center;
   border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(0,212,255,0.08) 100%);
-  border: 2px solid var(--border);
+  border: 2px solid var(--border-hover);
+  display: block;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(0,212,255,0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.avatar-photo:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 70px rgba(0,0,0,0.5), 0 0 30px rgba(0,212,255,0.15);
+}
+.avatar-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: calc(var(--radius-lg) + 6px);
+  border: 2px solid transparent;
+  background: linear-gradient(135deg, var(--accent), transparent 50%, var(--accent2)) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  animation: ringPulse 3s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes ringPulse {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 1; }
+}
+
+/* Keep old placeholder stub for fallback safety */
+.avatar-placeholder {
+  width: 100%; aspect-ratio: 1; max-width: 300px;
+  border-radius: var(--radius-lg);
+  background: var(--bg-card); border: 2px solid var(--border);
   display: flex; flex-direction: column;
   align-items: center; justify-content: center; gap: 1rem;
-  position: relative; overflow: hidden;
 }
-.avatar-placeholder::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(circle at 50% 30%, rgba(0,212,255,0.1) 0%, transparent 60%);
-}
-.avatar-placeholder i {
-  font-size: 5rem; color: var(--accent); opacity: 0.6;
-}
-.avatar-placeholder p {
-  font-size: 0.8rem; color: var(--text-muted);
-}
+.avatar-placeholder i { font-size: 5rem; color: var(--accent); opacity: 0.6; }
+.avatar-placeholder p  { font-size: 0.8rem; color: var(--text-muted); }
 
 .about-meta {
   display: flex; flex-direction: column; gap: 1.5rem;
@@ -646,7 +674,8 @@ section { padding: 100px 5%; }
 /* ── Contact Page ────────────────────────────────── */
 .contact-layout {
   display: grid; grid-template-columns: 1fr 1.2fr;
-  gap: 4rem; align-items: start;
+  gap: 2.5rem; align-items: start;
+  width: 100%;
 }
 
 .contact-info { display: flex; flex-direction: column; gap: 1.8rem; }
@@ -692,7 +721,9 @@ section { padding: 100px 5%; }
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 2.5rem;
+  padding: 2rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 .contact-form h3 {
   font-family: var(--font-display);
@@ -777,10 +808,35 @@ footer .footer-links a:hover { color: var(--accent); }
 @media (max-width: 900px) {
   .about-grid { grid-template-columns: 1fr; }
   .about-avatar-wrap { position: static; max-width: 300px; margin: 0 auto; }
-  .contact-layout { grid-template-columns: 1fr; }
+  .contact-layout { grid-template-columns: 1fr; gap: 2rem; }
 }
 @media (max-width: 600px) {
-  section { padding: 80px 5%; }
+  section { padding: 80px 4% 60px; }
+  /* ── Contact page mobile ── */
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    overflow: hidden;
+  }
+  .contact-info { gap: 1rem; }
+  .contact-item {
+    padding: 1rem;
+    flex-wrap: nowrap;
+  }
+  .contact-item p,
+  .contact-item a {
+    font-size: 0.82rem;
+    word-break: break-all;
+  }
+  .contact-form {
+    padding: 1.2rem;
+    border-radius: var(--radius);
+  }
+  .form-group input,
+  .form-group textarea {
+    font-size: 1rem; /* Prevents iOS auto-zoom */
+    padding: 0.75rem;
+  }
   .social-grid { grid-template-columns: repeat(3, 1fr); }
   .hero-name {
     font-size: clamp(1.8rem, 9vw, 3rem);
