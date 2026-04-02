@@ -6,7 +6,8 @@
 window.addEventListener('load', () => {
   const loader = document.getElementById('loader');
   if (loader) {
-    setTimeout(() => loader.classList.add('hide'), 1800);
+    // Reduced from 1800ms → 300ms for instant page feel
+    setTimeout(() => loader.classList.add('hide'), 300);
   }
 });
 
@@ -224,4 +225,33 @@ document.addEventListener('DOMContentLoaded', () => {
     ['Web Designer', 'Web Developer', 'Java Developer', 'UI/UX Enthusiast'],
     85
   );
+});
+/* ── Page Transition: Instant exit on link click ── */
+document.querySelectorAll('a[href]').forEach(link => {
+  const href = link.getAttribute('href');
+  // Only apply to internal .html page links (not anchors, not external)
+  if (
+    href &&
+    !href.startsWith('#') &&
+    !href.startsWith('http') &&
+    !href.startsWith('mailto') &&
+    !href.startsWith('tel') &&
+    (href.endsWith('.html') || href.includes('.html'))
+  ) {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      document.body.style.opacity = '0';
+      document.body.style.transition = 'opacity 0.15s ease';
+      setTimeout(() => { window.location.href = href; }, 150);
+    });
+  }
+});
+
+// Fade in on arrival
+document.addEventListener('DOMContentLoaded', () => {
+  document.body.style.opacity = '0';
+  requestAnimationFrame(() => {
+    document.body.style.transition = 'opacity 0.2s ease';
+    document.body.style.opacity = '1';
+  });
 });

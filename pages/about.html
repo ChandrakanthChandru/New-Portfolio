@@ -11,6 +11,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="../css/style.css" />
+  <!-- Prefetch sibling pages -->
+  <link rel="prefetch" href="../index.html" />
+  <link rel="prefetch" href="projects.html" />
+  <link rel="prefetch" href="contact.html" />
 </head>
 <body>
 
@@ -57,10 +61,15 @@
       <div class="avatar-photo-wrap">
         <img
           src="../images/Profile.jpeg"
-          alt="Chandrakanth K — Web Developer & Java Developer"
+          alt="Chandrakanth K — Web Developer &amp; Java Developer"
           class="avatar-photo"
         />
         <div class="avatar-ring"></div>
+        <!-- Name & Role Overlay -->
+        <div class="avatar-overlay">
+          <span class="avatar-name">Chandrakanth K</span>
+          <span class="avatar-role">Software Engineer</span>
+        </div>
       </div>
 
       <div class="about-meta">
@@ -94,7 +103,7 @@
         </div>
 
         <!-- Resume Download -->
-        <a href="#" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:.5rem" download>
+        <a href="./Chandrakanth.k Pf.pdf" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:.5rem" download>
           <i class="fas fa-download"></i> Download Resume
         </a>
       </div>

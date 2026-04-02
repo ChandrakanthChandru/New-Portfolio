@@ -11,6 +11,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="../css/style.css" />
+  <!-- Prefetch sibling pages -->
+  <link rel="prefetch" href="../index.html" />
+  <link rel="prefetch" href="about.html" />
+  <link rel="prefetch" href="contact.html" />
 
   <style>
     /* Filter tabs */
@@ -151,7 +155,7 @@
         <a href="https://github.com/ChandrakanthChandru" target="_blank" rel="noopener" class="project-link">
           <i class="fab fa-github"></i> GitHub
         </a>
-        <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+        <a href="https://ChandrakanthWeb.vercel.app" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
       </div>
     </div>
 
@@ -269,6 +273,33 @@
         </a>
         <a href="https://vv-construction.vercel.app/" target="_blank" rel="noopener" class="project-link">
           <i class="fas fa-external-link-alt"></i> Live Demo
+        </a>
+      </div>
+    </div>
+
+    <!-- Project 6: Cricket Team Management System -->
+    <div class="project-card" data-cat="java" data-aos data-aos-delay="500">
+      <div class="project-card-top">
+        <div class="project-num">06 / JAVA</div>
+        <span class="proj-badge"><i class="fab fa-java" style="margin-right:4px"></i>Java & Hibernate</span>
+        <h3>Cricket Team Management System</h3>
+        <p>
+          A menu-driven console application for managing cricket teams and players using Hibernate ORM with MySQL — featuring full CRUD operations and role-based player queries.
+        </p>
+        <ul style="margin: .8rem 0 1rem; padding-left: 1.2rem; color: var(--text-secondary); font-size:.88rem; line-height:1.8">
+          <li>One-to-Many mapping between Team (Parent) and Player (Child) using Hibernate &amp; JPA annotations</li>
+          <li>Menu-driven console UI with do-while and switch for CRUD operations</li>
+          <li>Configured via <code style="font-size:.8rem;color:var(--accent)">persistence.xml</code> with MySQL for persistent storage</li>
+          <li>Fetch players by role: Batsman, Bowler, Wicket Keeper</li>
+          <li>Managed dependencies with Maven for a clean modular build</li>
+        </ul>
+        <div class="project-tech">
+          <span>Java</span><span>Hibernate</span><span>JPA</span><span>MySQL</span><span>Maven</span>
+        </div>
+      </div>
+      <div class="project-card-bottom">
+        <a href="https://github.com/ChandrakanthChandru" target="_blank" rel="noopener" class="project-link">
+          <i class="fab fa-github"></i> GitHub
         </a>
       </div>
     </div>

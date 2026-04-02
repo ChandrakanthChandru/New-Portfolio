@@ -73,9 +73,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background: var(--bg-primary);
   display: flex; align-items: center; justify-content: center;
   flex-direction: column; gap: 20px;
-  transition: opacity 0.5s, visibility 0.5s;
+  transition: opacity 0.2s, visibility 0.2s;
 }
-#loader.hide { opacity: 0; visibility: hidden; }
+#loader.hide { opacity: 0; visibility: hidden; pointer-events: none; }
 
 .loader-logo {
   font-family: var(--font-display);
@@ -94,7 +94,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: block; height: 100%;
   width: 0; background: var(--accent);
   border-radius: 10px;
-  animation: loadbar 1.8s ease-in-out forwards;
+  animation: loadbar 0.3s ease-in-out forwards;
 }
 @keyframes loadbar { to { width: 100%; } }
 
@@ -562,6 +562,51 @@ section { padding: 100px 5%; }
 @keyframes ringPulse {
   0%, 100% { opacity: 0.5; }
   50%       { opacity: 1; }
+}
+
+/* ── Profile Photo Overlay (Name + Role) ── */
+.avatar-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: clamp(0.6rem, 2vw, 1rem) clamp(0.8rem, 2.5vw, 1.2rem);
+  background: linear-gradient(
+    to top,
+    rgba(5, 10, 22, 0.92) 0%,
+    rgba(5, 10, 22, 0.6) 60%,
+    transparent 100%
+  );
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  transform: translateY(4px);
+  opacity: 0.92;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.avatar-photo-wrap:hover .avatar-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+.avatar-name {
+  font-family: var(--font-display);
+  font-size: clamp(0.85rem, 2.5vw, 1.05rem);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.avatar-role {
+  font-size: clamp(0.7rem, 2vw, 0.8rem);
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 /* Keep old placeholder stub for fallback safety */
