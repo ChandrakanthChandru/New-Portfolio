@@ -131,13 +131,16 @@ body.light #navbar.scrolled, body.light #navbar.menu-open {
   font-size: 0.9rem; font-weight: 500;
   color: var(--text-secondary);
   position: relative;
-  transition: color 0.3s, background-color 0.3s;
+  transition: color 0.3s, text-decoration-color 0.3s;
   padding: 8px 16px;
-  border-radius: 100px;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1.5px;
 }
 .nav-links a:hover, .nav-links a.active {
   color: var(--accent);
-  background-color: var(--accent-glow);
+  text-decoration-color: var(--accent);
 }
 
 .nav-actions { display: flex; align-items: center; gap: 1rem; }
@@ -186,18 +189,23 @@ body.light #navbar.scrolled, body.light #navbar.menu-open {
     flex-direction: column; gap: 0;
     padding: 1rem 0;
     border-bottom: 1px solid var(--border);
-    transform: translateY(-120%);
-    transition: transform 0.35s ease;
-    z-index: 999;
+    transform: translateY(-150%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.4s ease, opacity 0.4s ease, visibility 0.4s;
+    z-index: -1;
   }
-  .nav-links.open { transform: translateY(0); }
+  .nav-links.open { 
+    transform: translateY(0); 
+    opacity: 1;
+    visibility: visible;
+  }
   .nav-links a { 
     padding: 1rem 2rem; width: 100%; font-size: 1rem; border-radius: 0;
-    border-left: 3px solid transparent;
+    transition: color 0.3s, text-decoration-color 0.3s;
   }
   .nav-links a:hover, .nav-links a.active {
-    background-color: rgba(0, 212, 255, 0.05);
-    border-left: 3px solid var(--accent);
+    background-color: transparent;
   }
   .hamburger { display: flex; }
 }
@@ -286,6 +294,8 @@ section { padding: 100px 5%; }
 .hero-inner {
   position: relative; z-index: 1;
   max-width: 700px;
+  min-width: 0;
+  width: 100%;
 }
 
 .hero-badge {
@@ -311,10 +321,11 @@ section { padding: 100px 5%; }
 
 .hero-name {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 7vw, 5.5rem);
-  font-weight: 800; line-height: 1;
+  font-size: clamp(2.4rem, 8vw, 5.5rem);
+  font-weight: 800; line-height: 1.1;
   letter-spacing: -2px;
   animation: fadeInUp 0.7s 0.1s ease both;
+  overflow-wrap: break-word;
 }
 .hero-name .highlight {
   color: var(--accent);
@@ -322,15 +333,15 @@ section { padding: 100px 5%; }
 }
 
 .hero-roles {
-  display: flex; flex-wrap: wrap; gap: 10px;
+  display: flex; flex-wrap: wrap; gap: 8px;
   margin: 1.2rem 0;
   animation: fadeInUp 0.7s 0.2s ease both;
 }
 .hero-roles .role-pill {
-  padding: 5px 14px;
+  padding: 6px 14px;
   border: 1px solid var(--border);
   border-radius: 100px;
-  font-size: 0.85rem; color: var(--text-secondary);
+  font-size: 0.8rem; color: var(--text-secondary);
   background: var(--bg-card);
   transition: all 0.3s ease;
   display: inline-flex;
@@ -771,7 +782,34 @@ footer .footer-links a:hover { color: var(--accent); }
 @media (max-width: 600px) {
   section { padding: 80px 5%; }
   .social-grid { grid-template-columns: repeat(3, 1fr); }
-  .hero-name { letter-spacing: -1px; }
+  .hero-name {
+    font-size: clamp(1.8rem, 9vw, 3rem);
+    letter-spacing: -1px;
+    line-height: 1.15;
+  }
+  .hero-name .highlight {
+    font-size: clamp(1.4rem, 7.5vw, 2.8rem);
+  }
+  .hero-desc {
+    font-size: 1rem;
+    text-align: left;
+  }
+  .hero-cta {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.8rem;
+  }
+  .hero-cta .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .hero-roles {
+    gap: 6px;
+  }
+  .hero-badge {
+    font-size: 0.75rem;
+    padding: 4px 12px;
+  }
 }
 
 /* Keyframe helpers */
